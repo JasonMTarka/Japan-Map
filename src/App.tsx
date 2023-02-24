@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Map } from "./components/Map";
 import "./css/App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
         <p>Japan Map</p>
       </header>
+      <Map />
     </div>
   );
 }
