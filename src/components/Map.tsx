@@ -5,6 +5,11 @@ import { SECRETS } from "../secrets";
 import { Place, ICONS, places } from "../places";
 import "../css/map.css";
 
+interface GoogleMapProps {
+  center: google.maps.LatLngLiteral;
+  zoom: number;
+}
+
 const render = (status: Status): ReactElement => {
   if (status === Status.LOADING) return <h3>{status} ..</h3>;
   if (status === Status.FAILURE) return <h3>{status} ...</h3>;
@@ -17,20 +22,14 @@ export const createMapMarker = (
   language: string
 ) => {
   place.options.icon = ICONS[place.type];
-  place.options.title = place[language];
-  place.options.label = place[language];
+  place.options.title = place[language].title;
+  place.options.label = place[language].title;
 
   const marker = new window.google.maps.Marker(place.options);
   marker.setMap(map);
 };
 
-const GoogleMap = ({
-  center,
-  zoom,
-}: {
-  center: google.maps.LatLngLiteral;
-  zoom: number;
-}) => {
+const GoogleMap = ({ center, zoom }: GoogleMapProps) => {
   const ref = useRef();
   const language = useContext(LanguageContext);
 
@@ -53,12 +52,12 @@ const GoogleMap = ({
 };
 
 export const Map = () => {
+  // Tokyo Imperial Palace coordinates
+  const tokyoCoords = { lat: 35.68598708672295, lng: 139.7527063235832 };
+
   return (
     <Wrapper apiKey={SECRETS.googleApiKey} render={render}>
-      <GoogleMap
-        center={{ lat: 35.68598708672295, lng: 139.7527063235832 }}
-        zoom={13}
-      ></GoogleMap>
+      <GoogleMap center={tokyoCoords} zoom={13}></GoogleMap>
     </Wrapper>
   );
 };
