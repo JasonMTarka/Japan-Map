@@ -16,7 +16,8 @@ const render = (status: Status): ReactElement => {
   return null;
 };
 
-export const createMapMarker = (
+// Constructs a marker and puts it on the Google map
+const createMapMarker = (
   place: Place,
   map: google.maps.Map,
   language: string

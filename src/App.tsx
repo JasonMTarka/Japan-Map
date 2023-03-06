@@ -1,5 +1,6 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { Map } from "./components/Map";
+import { TEXT } from "./text";
 import "./css/App.css";
 
 const LANGUAGES = {
@@ -10,11 +11,13 @@ const LANGUAGES = {
 export const LanguageContext = createContext(LANGUAGES.eng);
 
 function App() {
+  const appTitle = TEXT[useContext(LanguageContext)].appTitle;
+
   return (
     <LanguageContext.Provider value={LANGUAGES.eng}>
       <div className="App">
         <header className="App-header">
-          <p>Japan Map</p>
+          <p>{appTitle}</p>
         </header>
         <Map />
       </div>

@@ -1,12 +1,3 @@
-// Location info used for creating map markers
-export interface Place {
-  name: string;
-  type: string;
-  eng: PlaceInfo;
-  jp: PlaceInfo;
-  options: google.maps.MarkerOptions;
-}
-
 // Information regarding a specific location
 interface PlaceInfo {
   title: string;
@@ -24,12 +15,23 @@ const LOCATION_TYPES = {
   post_town: "post_town",
 };
 
+// Location info used for creating map markers
+export interface Place {
+  name: string;
+  type: string;
+  eng: PlaceInfo;
+  jp: PlaceInfo;
+  options: google.maps.MarkerOptions;
+}
+
 // Icons change depending on type of location
 export const ICONS = {
   battle: "./icons/fire.svg",
   post_town: "./icons/horse.svg",
 };
 
+// List of places for pin creation
+// TODO: set up backend for places
 export const places: Place[] = [
   {
     name: "sekigahara",
